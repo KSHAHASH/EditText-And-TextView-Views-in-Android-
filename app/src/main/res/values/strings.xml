@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">EditTexts</string>
+    <string name="edit_text">Please enter your name</string>
+    <string name="text_view">Result:</string>
+    <string name="button">OK</string>
+
+</resources>
