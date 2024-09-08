@@ -8,17 +8,19 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.bignerdranch.android.edittexts.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-   private lateinit var editText: EditText
-   private lateinit var button: Button
-   private lateinit var textView: TextView
+  private lateinit var mainBinding : ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        mainBinding = ActivityMainBinding.inflate(layoutInflater)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        setContentView(mainBinding.root)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -26,16 +28,10 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        //initialize the variables by referencing with their corresponding ids
-        editText = findViewById(R.id.edit_text)
-        button = findViewById(R.id.button)
-        textView = findViewById(R.id.textView2)
 
-
-        button.setOnClickListener {
-            var userName: String = editText.text.toString()
-            textView.setText(userName)
-            //textView.text = userName ---> property access syntax
+        mainBinding.button.setOnClickListener {
+            val userName = mainBinding.editText.text.toString()
+            mainBinding.textView.text = userName
         }
     }
 }

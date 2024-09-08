@@ -4,6 +4,9 @@ plugins {
 }
 
 android {
+    buildFeatures{
+        viewBinding = true
+    }
     namespace = "com.bignerdranch.android.edittexts"
     compileSdk = 34
 
