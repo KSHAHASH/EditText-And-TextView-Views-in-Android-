@@ -1,7 +1,22 @@
 <resources>
     <string name="app_name">EditTexts</string>
-    <string name="edit_text">Please enter your name</string>
-    <string name="text_view">Result:</string>
-    <string name="button">OK</string>
+    <string name="TrueButton">True</string>
+    <string name="FalseButton">False</string>
+    <string name="PreviousButton">Prev:</string>
+    <string name="NextButton">Next</string>
+    <string name="incorrectToast">False</string>
+    <string name="correctToast">True</string>
+    <string name="FirstView">Canberra is Capital of Australia</string>
+    <string name="testView">Hello</string>
+    <string name="question_oceans">The Pacific Ocean is larger than
+    the Atlantic Ocean.</string>
+    <string name="question_mideast">The Suez Canal connects the Red Sea
+  and the Indian Ocean.</string>
+    <string name="question_africa">The source of the Nile River is in Egypt.</string>
+    <string name="question_americas">The Amazon River is the longest river
+  in the Americas.</string>
+    <string name="question_asia">Lake Baikal is the world\'s oldest and deepest
+  freshwater lake.</string>
+
 
 </resources>
