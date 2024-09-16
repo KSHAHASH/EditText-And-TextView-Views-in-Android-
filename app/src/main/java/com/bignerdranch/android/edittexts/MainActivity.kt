@@ -12,6 +12,9 @@ import androidx.core.view.WindowInsetsCompat
 import com.bignerdranch.android.edittexts.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
 
+private const val NOT_ANSWERED = 0
+private const val CORRECT_ANSWER = 1
+private const val INCORRECT_ANSWER = 2
 class MainActivity : AppCompatActivity() {
 
   private lateinit var binding : ActivityMainBinding
@@ -26,14 +29,29 @@ class MainActivity : AppCompatActivity() {
       Question(R.string.question_oceans, true),
       Question(R.string.question_mideast, false)
   )
+    private val questionAnswers = MutableList(questionBank.size) { NOT_ANSWERED }
+
 
     private fun buttonChecker(checkerValue: Boolean){
+        if (questionAnswers[currentIndex]!= NOT_ANSWERED){
+            //Question already answered
+            return
+        }
+
+        // if both boolean values are same, also update the questionAnswers[currentIndex] to keep track of it
            val messageId = if(questionBank[currentIndex].answer == checkerValue){
+               questionAnswers[currentIndex] = CORRECT_ANSWER
                 R.string.correctToast
             }
         else{
+            questionAnswers[currentIndex] = INCORRECT_ANSWER
             R.string.incorrectToast
             }
+
+        // Disable the buttons after an answer is given
+        binding.TrueButton.isEnabled = false
+        binding.FalseButton.isEnabled = false
+
         Toast.makeText(this, messageId, Toast.LENGTH_SHORT).show()
     }
 
@@ -72,6 +90,12 @@ class MainActivity : AppCompatActivity() {
             val questionResId = questionBank[currentIndex].textResId
             binding.FirstView.text = getString(questionResId)
 
+            // Re-enable buttons for the new question if it has not been answered
+            if (questionAnswers[currentIndex] == NOT_ANSWERED) {
+                binding.TrueButton.isEnabled = true
+                binding.FalseButton.isEnabled = true
+            }
+
             }
 
         //previous button feature
@@ -85,6 +109,12 @@ class MainActivity : AppCompatActivity() {
             }
             val questionResId = questionBank[currentIndex].textResId
             binding.FirstView.text = getString(questionResId)
+
+            // Re-enable buttons for the new question if it has not been answered
+            if (questionAnswers[currentIndex] == NOT_ANSWERED) {
+                binding.TrueButton.isEnabled = true
+                binding.FalseButton.isEnabled = true
+            }
 
         }
 
